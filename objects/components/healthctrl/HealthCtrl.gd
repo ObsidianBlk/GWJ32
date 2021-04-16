@@ -6,7 +6,7 @@ signal dead
 signal healed
 signal full_health
 signal extra_health
-signal health_changed(old_health, new_health)
+signal health_changed(value)
 
 
 export (float) var max_normal_health = 100 setget _set_max_normal_health
@@ -34,12 +34,24 @@ func init():
 		ready = true
 		set_health(max_normal_health)
 
+func revive(amount : float = 0.0):
+	if not is_alive():
+		if amount <= 0.0:
+			set_health(max_normal_health)
+		else:
+			set_health(min(max_normal_health, amount))
+
+func is_alive():
+	return ready and health > 0.0
+
+func is_dead():
+	return not is_alive()
 
 func set_health(h : float):
 	var oh = health
 	health = min(h, max_extra_health)
 	if health != oh:
-		emit_signal("health_changed", oh, health)
+		emit_signal("health_changed", health)
 
 
 func hurt(amount : float):
@@ -52,7 +64,7 @@ func hurt(amount : float):
 			# TODO: Check for gibs!
 		else:
 			emit_signal("hurt")
-		emit_signal("health_changed", oh, health)
+		emit_signal("health_changed", health)
 
 
 func heal(amount : float, extra : bool = false):
@@ -67,5 +79,5 @@ func heal(amount : float, extra : bool = false):
 			emit_signal("full_health")
 		elif health == max_extra_health:
 			emit_signal("extra_health")
-		emit_signal("health_changed", oh, health)
+		emit_signal("health_changed", health)
 

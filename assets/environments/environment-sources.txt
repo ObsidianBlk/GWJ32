@@ -1,0 +1,7 @@
+Environment_001.hdr
+Source: https://hdrihaven.com/hdri/?c=indoor&h=aerodynamics_workshop
+Original Title: Aerodynamics Workshop
+Author: Oliksiy Yakovlyev
+
+
+

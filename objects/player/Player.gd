@@ -8,19 +8,27 @@ onready var body = self
 onready var head = $Head
 
 onready var mover = $Mover
+onready var health = $HealthCtrl
 
 #onready var sensor_ground = $Sensors/Ground
 
 
 func _ready():
 	mover.set_head(head)
+	health.connect("dead", self, "_on_dead")
 
 
 func get_mover():
 	return mover
 
-#func is_grounded():
-#	return sensor_ground.is_colliding()
+func get_healthCtl():
+	return health
+
+
+func is_alive():
+	if health != null:
+		return health.is_alive()
+	return true # Assume alive if health isn't ready.
 
 func escape_request():
 	# TODO: Actually send a signal and let the world/level handle whether to exit program
@@ -30,6 +38,18 @@ func escape_request():
 
 func look(x, y):
 	mover.look(mouse_sensitivity * x, mouse_sensitivity * y)
-	#body.rotation_degrees.y -= mouse_sensitivity * x
-	#head.rotation_degrees.x = clamp(head.rotation_degrees.x - (mouse_sensitivity * y), -90, 90)
+
+
+func hurt(amount : float, d : Vector3 = Vector3.ZERO, force : float = 0.0):
+	health.hurt(amount, d)
+	if d.length_squared() > 0 and force > 0:
+		mover.push(d * force)
+
+
+func heal(amount : float):
+	health.heal(amount)
+
+func _on_dead():
+	mover.enabled(false)
+
 

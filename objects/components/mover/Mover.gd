@@ -84,6 +84,9 @@ func look(dx, dy = 0):
 		if head != null:
 			head.rotation_degrees.x = clamp(head.rotation_degrees.x - dy, -90, 90)
 
+func push(v : Vector3):
+	velocity += v
+
 func set_motion(mv : Vector3):
 	motion = mv
 
