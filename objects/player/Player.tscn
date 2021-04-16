@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/FSM/FSM.gd" type="Script" id=1]
 [ext_resource path="res://objects/player/Player.gd" type="Script" id=2]
 [ext_resource path="res://objects/player/states/idle.gd" type="Script" id=3]
 [ext_resource path="res://objects/player/states/moving.gd" type="Script" id=4]
+[ext_resource path="res://objects/components/mover/Mover.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/components/healthctrl/HealthCtrl.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -12,6 +14,12 @@ radius = 0.5
 collision_layer = 16
 collision_mask = 111
 script = ExtResource( 2 )
+
+[node name="Mover" parent="." instance=ExtResource( 5 )]
+actor_path = NodePath("..")
+drag_multiplier = 3.0
+
+[node name="HealthCtrl" parent="." instance=ExtResource( 6 )]
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 1 )
@@ -31,6 +39,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
 current = true
+fov = 90.0
 
 [node name="Sensors" type="Spatial" parent="."]
 

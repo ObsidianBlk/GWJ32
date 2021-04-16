@@ -20,11 +20,12 @@ func handle_update(delta):
 	pass
 
 func handle_physics(delta):
-	player.apply_velocity(delta)
+	var mover = player.get_mover()
+	mover.apply_velocity(delta)
 	
-	if not player.is_grounded():
+	if not mover.is_grounded():
 		emit_signal("finished", "falling")
-	elif not player.is_moving():
+	elif not mover.is_moving():
 		emit_signal("finished", "idle")
 
 
