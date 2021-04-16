@@ -135,7 +135,7 @@ func _clampVelocitySimple():
 
 
 
-func apply_velocity(delta):
+func apply_velocity(delta : float):
 	if not (valid() and enabled):
 		return
 	
@@ -165,4 +165,8 @@ func apply_velocity(delta):
 	elif jumping:
 		jumping = false
 
-
+func face(delta : float, target : Vector3):
+	if not (valid() and enabled):
+		return
+	
+	# TODO : Do stuff!

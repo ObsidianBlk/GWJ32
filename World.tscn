@@ -1,8 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://meshlibs/isisian_level.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://objects/player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/environments/environment_001.hdr" type="Texture" id=3]
+
+[sub_resource type="NavigationMesh" id=3]
+vertices = PoolVector3Array( -8.7, 0.35, -8.3, -6.6, 0.35, -8.3, -7.5, 0.35, -8.9, 12, 0.35, -20.6, 12.6, 0.35, -20, 12.6, 0.35, -25.7, -8.7, 0.35, -17, -8.7, 0.35, -8.3, -7.5, 0.35, -8.9, -7.5, 0.35, -20, 2.4, 0.35, -20.6, 12, 0.35, -20.6, 12.6, 0.35, -25.7, 1.8, 0.35, -25.7, -8.7, 0.35, -25.7, -8.7, 0.35, -17, -7.5, 0.35, -20, -8.7, 0.35, -25.7, -7.5, 0.35, -20, -6.9, 0.35, -20.6, 1.8, 0.35, -25.7, -8.7, 0.35, -25.7, -6.9, 0.35, -20.6, 2.4, 0.35, -20.6, 3.6, 0.35, -8.3, 3.6, 0.35, -10.4, 2.7, 0.35, -10.7, -5.4, 0.35, -9.2, -5.7, 0.55, -8.3, -6.6, 0.35, -9.5, -5.4, 0.35, -9.2, 2.7, 0.35, -10.7, 2.7, 0.55, -19.7, -6.6, 0.55, -19.7, 2.7, 0.55, -16.7, 6.6, 0.35, -3.2, 6.6, 0.35, -1.4, 7.5, 0.35, -1.4, 7.5, 0.35, -4.1, 6.6, 0.35, -8, 6.6, 0.35, -6.8, 7.5, 0.35, -6.8, 7.5, 0.35, -8, 4.5, 0.35, -10.7, 3.6, 0.35, -10.4, 3.6, 0.35, -8.3, 6.6, 0.35, -8, 7.5, 0.35, -4.1, 8.7, 0.35, -4.4, 8.7, 0.35, -6.5, 7.5, 0.35, -6.8, 11.1, 0.35, -14.3, 11.7, 0.35, -14.6, 11.7, 0.55, -19.7, 11.7, 0.55, -16.3, 4.8, 0.35, -4.4, 6.6, 0.35, -3.2, 7.5, 0.35, -4.1, 7.5, 0.35, -6.8, 6.6, 0.35, -6.8, 4.8, 0.35, -5.6, 4.5, 0.35, -10.7, 6.6, 0.35, -8, 7.5, 0.35, -8, 11.1, 0.35, -14.3, 11.7, 0.55, -19.7, 4.2, 0.35, -19.4, 11.7, 0.55, -8.3, 11.7, 0.35, -13.4, 11.1, 0.35, -14.3, 7.5, 0.35, -8, 5.7, 0.35, -2.6, 4.5, 0.35, -2.6, 4.5, 0.35, -1.4, 5.4, 0.35, -1.1, 12.6, 0.35, -8, 12, 0.35, -7.4, 9.6, 0.35, -3.8, 8.1, 0.35, -0.499998, 12.6, 0.35, 1.6, 6, 0.35, -0.499998, 5.7, 0.35, -2.6, 5.4, 0.35, -1.1, 5.4, 0.35, 1.6, 12, 0.35, -7.4, 9.6, 0.35, -7.4, 9.6, 0.35, -3.8, 8.1, 0.35, -0.499998, 6, 0.35, -0.499998, 5.4, 0.35, 1.6, 12.6, 0.35, 1.6, 9.6, 0.35, -3.8, 8.4, 0.35, -3.5, 8.1, 0.35, -0.499998, 4.5, 0.35, 1.6, 4.5, 0.35, -0.499998, 3.6, 0.35, -0.799999, -2.1, 0.35, 1.6, 3.6, 0.35, -3.2, 4.8, 0.35, -4.4, 4.8, 0.35, -5.6, 3.6, 0.35, -3.2, 4.8, 0.35, -5.6, 3.6, 0.35, -7.4, -8.4, 0.35, -7.4, -8.4, 0.35, 1.6, -2.1, 0.35, 1.6, -2.1, 0.35, 1.6, 3.6, 0.35, -0.799999, 3.6, 0.35, -3.2 )
+polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 5, 4, 3 ), PoolIntArray( 7, 6, 8 ), PoolIntArray( 8, 6, 9 ), PoolIntArray( 10, 13, 11 ), PoolIntArray( 11, 13, 12 ), PoolIntArray( 16, 15, 14 ), PoolIntArray( 19, 18, 17 ), PoolIntArray( 23, 22, 20 ), PoolIntArray( 20, 22, 21 ), PoolIntArray( 25, 24, 26 ), PoolIntArray( 26, 24, 27 ), PoolIntArray( 27, 24, 28 ), PoolIntArray( 30, 29, 31 ), PoolIntArray( 31, 29, 34 ), PoolIntArray( 34, 29, 32 ), PoolIntArray( 32, 29, 33 ), PoolIntArray( 36, 35, 37 ), PoolIntArray( 37, 35, 38 ), PoolIntArray( 42, 41, 39 ), PoolIntArray( 39, 41, 40 ), PoolIntArray( 44, 43, 45 ), PoolIntArray( 45, 43, 46 ), PoolIntArray( 49, 48, 50 ), PoolIntArray( 50, 48, 47 ), PoolIntArray( 52, 51, 54 ), PoolIntArray( 54, 51, 53 ), PoolIntArray( 59, 58, 60 ), PoolIntArray( 60, 58, 55 ), PoolIntArray( 55, 58, 57 ), PoolIntArray( 55, 57, 56 ), PoolIntArray( 62, 61, 63 ), PoolIntArray( 63, 61, 64 ), PoolIntArray( 64, 61, 65 ), PoolIntArray( 65, 61, 66 ), PoolIntArray( 68, 67, 69 ), PoolIntArray( 69, 67, 70 ), PoolIntArray( 73, 72, 74 ), PoolIntArray( 74, 72, 71 ), PoolIntArray( 76, 75, 77 ), PoolIntArray( 77, 75, 78 ), PoolIntArray( 78, 75, 79 ), PoolIntArray( 81, 80, 82 ), PoolIntArray( 82, 80, 83 ), PoolIntArray( 86, 85, 84 ), PoolIntArray( 88, 87, 89 ), PoolIntArray( 89, 87, 90 ), PoolIntArray( 93, 92, 91 ), PoolIntArray( 95, 94, 96 ), PoolIntArray( 96, 94, 97 ), PoolIntArray( 100, 99, 98 ), PoolIntArray( 102, 101, 103 ), PoolIntArray( 103, 101, 106 ), PoolIntArray( 103, 106, 105 ), PoolIntArray( 103, 105, 104 ), PoolIntArray( 109, 108, 107 ) ]
+geometry/parsed_geometry_type = 2
+geometry/collision_mask = 4293918723
+agent/height = 1.08
+agent/radius = 0.22
 
 [sub_resource type="PanoramaSky" id=1]
 radiance_size = 0
@@ -19,7 +27,12 @@ ambient_light_sky_contribution = 0.51
 
 [node name="Level" type="Spatial" parent="."]
 
-[node name="Floors" type="GridMap" parent="Level"]
+[node name="Navigation" type="Navigation" parent="Level"]
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Level/Navigation"]
+navmesh = SubResource( 3 )
+
+[node name="Floors" type="GridMap" parent="Level/Navigation/NavigationMeshInstance"]
 mesh_library = ExtResource( 1 )
 cell_size = Vector3( 1, 0.25, 1 )
 cell_center_x = false
@@ -32,7 +45,7 @@ __meta__ = {
 "_editor_clip_": 0
 }
 
-[node name="Walls" type="GridMap" parent="Level"]
+[node name="Walls" type="GridMap" parent="Level/Navigation/NavigationMeshInstance"]
 mesh_library = ExtResource( 1 )
 cell_size = Vector3( 1, 0.25, 1 )
 cell_center_x = false
