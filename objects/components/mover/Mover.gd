@@ -80,9 +80,9 @@ func jump():
 
 func look(dx, dy = 0):
 	if valid():
-		actor.rotation_degrees.y -= dx
+		actor.rotation_degrees.y += dx
 		if head != null:
-			head.rotation_degrees.x = clamp(head.rotation_degrees.x - dy, -90, 90)
+			head.rotation_degrees.x = clamp(head.rotation_degrees.x + dy, -90, 90)
 
 func push(v : Vector3):
 	velocity += v

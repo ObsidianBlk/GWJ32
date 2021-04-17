@@ -36,6 +36,6 @@ func handle_input(event):
 				if event.is_action_pressed("ui_cancel"):
 					player.escape_request()
 			elif event is InputEventMouseMotion:
-				player.look(event.relative.x, event.relative.y)
+				player.look(-event.relative.x, -event.relative.y)
 
 
