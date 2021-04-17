@@ -54,7 +54,7 @@ func set_health(h : float):
 		emit_signal("health_changed", health)
 
 
-func hurt(amount : float):
+func hurt(amount : float, d : Vector3 = Vector3.ZERO):
 	# TODO: Spray blood! :)
 	var oh = health
 	health -= amount

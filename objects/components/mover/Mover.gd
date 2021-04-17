@@ -49,9 +49,9 @@ func is_enabled():
 	return enabled
 
 func is_moving():
-	return velocity.length() > 0
+	return velocity.length() > 1.0
 
-func is_jumping(threshold : float = 0.0001):
+func is_lifting(threshold : float = 0.0001):
 	return velocity.y > threshold
 
 
@@ -60,7 +60,7 @@ func is_falling(threshold : float = 0.0001):
 
 
 func is_grounded(threshold : float = 0.0001):
-	return not (is_jumping() or is_falling())
+	return not (is_lifting() or is_falling())
 
 func is_walking():
 	return walking
@@ -135,7 +135,7 @@ func _clampVelocitySimple():
 
 
 
-func apply_velocity(delta : float):
+func apply_velocity(delta : float, verbos : bool = false):
 	if not (valid() and enabled):
 		return
 	

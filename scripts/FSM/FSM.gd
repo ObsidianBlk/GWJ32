@@ -4,6 +4,7 @@ extends Node
 export var initial_state : String = ""
 export var is_player_controlled : bool = false
 
+var ready = false
 var state_map = {}
 var cur_state = null
 var paused = false
@@ -34,6 +35,9 @@ func is_paused():
 	return paused
 
 func _ready():
+	var parent = get_parent()
+	parent.connect("actor_ready", self, "_on_parent_ready")
+	
 	if is_player_controlled:
 		set_process_input(false)
 	
@@ -44,6 +48,8 @@ func _ready():
 			if cur_state == null and initial_state == "":
 				initial_state = child.name
 
+func _on_parent_ready():
+	ready = true
 	if initial_state != "":
 		if not _change_state(initial_state):
 			print("WARNING: FSM Initial state '", initial_state, "' not in state map.")
@@ -53,11 +59,11 @@ func _unhandled_input(event):
 		state_map[cur_state].handle_input(event)
 
 func _process(delta):
-	if cur_state != null:
+	if ready and cur_state != null:
 		state_map[cur_state].handle_update(delta)
 
 func _physics_process(delta):
-	if cur_state != null:
+	if ready and cur_state != null:
 		state_map[cur_state].handle_physics(delta)
 
 

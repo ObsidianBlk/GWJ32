@@ -1,31 +1,39 @@
 extends "res://objects/player/PlayerState.gd"
 
 
+onready var audio = get_node("../../Stream_steps")
+
+
+
 func enter():
-	pass
+	.enter()
+	audio.play()
+	anim.play("Idle")
 
 func resume():
 	paused = false
 
 func exit():
-	pass
+	.exit()
 
 func pause():
 	paused = true
 
 func handle_input(event):
 	.handle_input(event)
-
-func handle_update(delta):
-	pass
+	if player.is_attacking():
+		emit_signal("finished", "attacking")
 
 func handle_physics(delta):
 	var mover = player.get_mover()
 	mover.apply_velocity(delta)
 	
-	if not mover.is_grounded():
-		emit_signal("finished", "falling")
-	elif not mover.is_moving():
-		emit_signal("finished", "idle")
+	if mover.is_grounded():
+		if not mover.is_moving():
+			emit_signal("finished", "idle")
+			return
+	else:
+		emit_signal("finished", "inair")
+		return
 
 

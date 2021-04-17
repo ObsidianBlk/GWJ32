@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/gruntsound.wav-89d52acee707a51bb463eead34e83eb3.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/gruntsound.wav"
+dest_files=[ "res://.import/gruntsound.wav-89d52acee707a51bb463eead34e83eb3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

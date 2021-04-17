@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ancient_robot.ogg-17336c0098cec2a25f54bc85c11fdc07.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/music/ancient_robot.ogg"
+dest_files=[ "res://.import/ancient_robot.ogg-17336c0098cec2a25f54bc85c11fdc07.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

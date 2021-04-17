@@ -1,7 +1,18 @@
 extends "res://scripts/FSM/State.gd"
 
 onready var player = get_node("../..")
+onready var anim = get_node("../../Head/arms/AnimationPlayer")
 
+
+func enter():
+	.enter()
+	var health = player.get_healthCtl()
+	health.connect("dead", self, "_on_dead")
+
+func exit():
+	.exit()
+	var health = player.get_healthCtl()
+	health.disconnect("dead", self, "_on_dead")
 
 func _motion_pressed_or_released(event, mover, name : String, v : Vector3):
 	if event.is_action_pressed(name):
@@ -32,10 +43,21 @@ func handle_input(event):
 		if event.is_action_pressed("jump"):
 			mover.jump()
 		else:
-			if event is InputEventKey:
+			if event.is_action_pressed("attack"):
+				player.attacking(true)
+			elif event.is_action_released("attack"):
+				player.attacking(false)
+			elif event is InputEventKey:
 				if event.is_action_pressed("ui_cancel"):
 					player.escape_request()
+				elif event.is_action_pressed("toggle_console"):
+					if player.is_in_group("Player"):
+						player.remove_from_group("Player")
+					else:
+						player.add_to_group("Player")
 			elif event is InputEventMouseMotion:
 				player.look(-event.relative.x, -event.relative.y)
 
+func _on_dead():
+	emit_signal("finished", "dead")
 
