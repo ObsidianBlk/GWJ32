@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/FSM/FSM.gd" type="Script" id=1]
 [ext_resource path="res://objects/player/Player.gd" type="Script" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://objects/player/states/dead.gd" type="Script" id=11]
 [ext_resource path="res://objects/player/attacks/Attack_Clawbash.gd" type="Script" id=12]
 [ext_resource path="res://objects/player/states/attacking.gd" type="Script" id=13]
+[ext_resource path="res://objects/player/attacks/Attack_Rifle.gd" type="Script" id=14]
+[ext_resource path="res://assets/audio/sfx/rifle.wav" type="AudioStream" id=15]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -279,6 +281,20 @@ tracks/12/loop_wrap = true
 tracks/12/imported = true
 tracks/12/enabled = true
 tracks/12/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.25, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
+tracks/13/type = "method"
+tracks/13/path = NodePath("../../Stream_rifle")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
 
 [sub_resource type="Animation" id=6]
 length = 2.08333
@@ -482,6 +498,7 @@ script = ExtResource( 2 )
 [node name="Mover" parent="." instance=ExtResource( 5 )]
 actor_path = NodePath("..")
 drag_multiplier = 3.0
+ground_sensor_path = NodePath("../Sensors/GroundSensor")
 
 [node name="HealthCtrl" parent="." instance=ExtResource( 6 )]
 
@@ -502,7 +519,7 @@ script = ExtResource( 11 )
 
 [node name="attacking" type="Node" parent="StateMachine"]
 script = ExtResource( 13 )
-attack_list = [ NodePath("../../Attack_Clawbash") ]
+attack_list = [ NodePath("../../Attack_Clawbash"), NodePath("../../Attack_Rifle") ]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1, 0 )
@@ -600,12 +617,6 @@ anims/fire = SubResource( 5 )
 anims/idle = SubResource( 6 )
 anims/rifle_start = SubResource( 7 )
 
-[node name="Stream_steps" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 7 )
-
-[node name="Stream_jump" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 10 )
-
 [node name="Attack_Clawbash" type="Spatial" parent="."]
 script = ExtResource( 12 )
 one_off = true
@@ -618,5 +629,25 @@ collision_mask = 64
 
 [node name="CollisionShape" type="CollisionShape" parent="Attack_Clawbash/BashArea"]
 shape = SubResource( 8 )
+
+[node name="Attack_Rifle" type="Spatial" parent="."]
+script = ExtResource( 14 )
+
+[node name="Stream_rifle" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 15 )
+bus = "Sound Effects"
+
+[node name="Stream_steps" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 7 )
+
+[node name="Stream_jump" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 10 )
+
+[node name="Sensors" type="Spatial" parent="."]
+
+[node name="GroundSensor" type="RayCast" parent="Sensors"]
+enabled = true
+cast_to = Vector3( 0, -0.1, 0 )
+collision_mask = 3
 [connection signal="body_entered" from="Attack_Clawbash/BashArea" to="Attack_Clawbash" method="_on_BashArea_body_entered"]
 [connection signal="body_exited" from="Attack_Clawbash/BashArea" to="Attack_Clawbash" method="_on_BashArea_body_exited"]

@@ -27,11 +27,14 @@ func handle_physics(delta):
 		if player.is_attacking():
 			attack_node.attack()
 		elif not attack_node.is_one_off():
+			print("Stopping attack")
 			if mover.is_grounded():
 				if mover.is_moving():
+					print("Attack -> Move")
 					emit_signal("finished", "moving")
 					return
 				else:
+					print("Attack -> idle")
 					emit_signal("finished", "idle")
 					return
 			else:

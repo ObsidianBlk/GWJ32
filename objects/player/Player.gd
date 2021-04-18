@@ -8,7 +8,7 @@ enum ATTACKS {BASH, GUN}
 
 export (float, 0.0, 1.0) var mouse_sensitivity = 0.5
 
-var cur_attack = ATTACKS.BASH
+var cur_attack = ATTACKS.GUN
 var attack_active = false
 
 onready var body = self
@@ -82,7 +82,13 @@ func look(x, y):
 	mover.look(mouse_sensitivity * x, mouse_sensitivity * y)
 
 
+func revive():
+	health.revive()
+	mover.enable(true)
+	next_attack()
+
 func hurt(amount : float, d : Vector3 = Vector3.ZERO, force : float = 0.0):
+	print("PLAYER: OUCH!")
 	health.hurt(amount, d)
 	if d.length_squared() > 0 and force > 0:
 		mover.push(d * force)

@@ -1,18 +1,20 @@
-extends "res://scripts/FSM/State.gd"
+extends "res://scripts/FSM/EnemyState.gd"
 
 
 # TODO: Animate dead
 # Wait a time
 # Remove from scene
 
-onready var anim = get_node("../../Anubus/AnimationPlayer")
 
 func enter():
 	.enter()
 	anim.stop()
-	print("ENEMY: I am now DEAD!")
+	anim.connect("animation_finished", self, "_anim_finished")
+	anim.play("Dead2")
 
 func handle_update(delta):
 	pass
 
+func _anim_finished(name):
+	actor.free()
 

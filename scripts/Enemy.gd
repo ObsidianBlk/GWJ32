@@ -136,6 +136,8 @@ func hurt(amount : float, d : Vector3 = Vector3.ZERO, force : float = 0.0):
 func heal(amount : float):
 	health.heal(amount)
 
+func free():
+	queue_free()
 
 func _on_dead():
 	mover.enable(false)

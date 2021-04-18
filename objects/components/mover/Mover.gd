@@ -9,9 +9,11 @@ export var run_accel :float = 2.0
 export var max_walk_velocity : float = 10.0
 export var walk_accel : float = 1.0
 export (float, 0.1, 10.0, 0.1) var drag_multiplier : float = 1.0
+export var ground_sensor_path : NodePath = ""
 
 
 var actor = null
+var ground_sensor_node = null
 var head = null
 var enabled = true
 
@@ -32,6 +34,11 @@ func _ready():
 	if not (actor is KinematicBody):
 		actor = null
 		return
+	
+	ground_sensor_node = get_node(ground_sensor_path)
+	if not (ground_sensor_node and ground_sensor_node is RayCast):
+		ground_sensor_node = null
+	
 	walk(false)
 
 
@@ -60,6 +67,8 @@ func is_falling(threshold : float = 0.0001):
 
 
 func is_grounded(threshold : float = 0.0001):
+	if ground_sensor_node != null:
+		return ground_sensor_node.is_colliding() and not jumping
 	return not (is_lifting() or is_falling())
 
 func is_walking():

@@ -8,7 +8,7 @@ onready var audio = get_node("../../Stream_steps")
 func enter():
 	.enter()
 	audio.play()
-	anim.play("Idle")
+	anim.play("idle")
 
 func resume():
 	paused = false

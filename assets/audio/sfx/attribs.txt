@@ -1,0 +1,18 @@
+
+footstep05.ogg
+knifeSlice.ogg
+Author: Kenney Vleugels (www.kenney.nl)
+License: http://creativecommons.org/publicdomain/zero/1.0/
+
+gruntsound.wav
+Author: TBD
+License: TBD
+Original Source: TBD
+
+rifle.wav
+Author: Michael Klier
+License: https://creativecommons.org/licenses/by-sa/3.0/
+Original Source: https://opengameart.org/content/futuristic-weapons-assault-rifle
+
+
+

@@ -8,7 +8,7 @@ func enter():
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	audio.stop()
-	anim.play("Idle")
+	anim.play("idle")
 
 func resume():
 	paused = false

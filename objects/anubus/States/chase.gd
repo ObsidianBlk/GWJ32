@@ -1,18 +1,14 @@
-extends "res://scripts/FSM/State.gd"
+extends "res://scripts/FSM/EnemyState.gd"
 
 
-onready var actor = get_node("../..")
-onready var anim = get_node("../../Anubus/AnimationPlayer")
-
-var mover = null
+var attack_slash = null
 
 func enter():
+	connectHealth = true
 	.enter()
 	
-	var health = actor.get_healthCtl()
-	health.connect("dead", self, "_on_dead")
-	
-	mover = actor.get_mover()
+	if attack_slash == null:
+		attack_slash = get_node("../../Attack_Slash")
 	if mover:
 		mover.walk(false)
 	anim.play("Run")
@@ -20,30 +16,32 @@ func enter():
 
 func exit():
 	.exit()
-	
-	var health = actor.get_healthCtl()
-	health.disconnect("dead", self, "_on_dead")
 
+func _can_attack():
+	if attack_slash != null:
+		return attack_slash.can_attack()
 
 func handle_update(delta):
+	if not _can_see_player():
+		emit_signal("finished", "idle")
+		return
 	var player = actor.get_sensor_body("Player")
-	if not player:
-		emit_signal("finished", "idle")
-		return
-	if not actor.can_see_target(player):
-		emit_signal("finished", "idle")
-		return
+	#if not player or not player.is_alive():
+	#	emit_signal("finished", "idle")
+	#	return
+	#if not actor.can_see_target(player):
+	#	emit_signal("finished", "idle")
+	#	return
 	
-	if actor.global_transform.origin.distance_to(player.global_transform.origin) > 0.5:
+	var dist = actor.global_transform.origin.distance_to(player.global_transform.origin)
+	print("Distance to Player: ", dist)
+	if not _can_attack():
 		actor.face_position(delta, player.global_transform.origin)
 		if mover:
 			mover.set_motion(-Vector3.FORWARD)
 			mover.apply_velocity(delta)
 	else:
-		# TODO: Check if "can attack", then call attack state.
-		#  This next call is just temporary
-		emit_signal("finished", "idle")
+		print("Chase -> Attack")
+		emit_signal("finished", "attack")
 
-func _on_dead():
-	emit_signal("finished", "dead")
 

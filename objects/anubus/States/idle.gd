@@ -1,10 +1,7 @@
-extends "res://scripts/FSM/State.gd"
+extends "res://scripts/FSM/EnemyState.gd"
 
 const IDLE_DELAY = 1.0
 const IDLE_VARIANCE = 0.5
-
-onready var actor = get_node("../..")
-onready var anim = get_node("../../Anubus/AnimationPlayer")
 
 
 var idle_timer = null
@@ -48,16 +45,14 @@ func _start_timers(restart : bool = false):
 		
 
 func enter():
-	var health = actor.get_healthCtl()
-	health.connect("dead", self, "_on_dead")
+	connectHealth = true
+	.enter()
 	_start_timers(true)
 	if anim.is_playing():
 		anim.play("Idle")
 
 func exit():
 	.exit()
-	var health = actor.get_healthCtl()
-	health.disconnect("dead", self, "_on_dead")
 	_stop_timers()
 	
 
@@ -70,9 +65,9 @@ func resume():
 	_start_timers()
 
 
-func _can_see_player():
-	var player = actor.get_sensor_body("Player")
-	return (player != null and actor.can_see_target(player))
+#func _can_see_player():
+#	var player = actor.get_sensor_body("Player")
+#	return (player != null and player.is_alive() and actor.can_see_target(player))
 
 func handle_update(delta):
 	if _can_see_player():
@@ -85,7 +80,4 @@ func _on_idle_timeout():
 
 func _on_wander_timeout():
 	emit_signal("finished", "wander")
-
-func _on_dead():
-	emit_signal("finished", "dead")
 
