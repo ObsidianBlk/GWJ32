@@ -17,6 +17,8 @@ onready var head = $Head
 onready var mover = $Mover
 onready var health = $HealthCtrl
 
+onready var FSM = $StateMachine
+
 
 func _ready():
 	#audio.register_sample("steps", "res://assets/audio/sfx/footstep05.ogg")
@@ -26,6 +28,15 @@ func _ready():
 	health.connect("dead", self, "_on_dead")
 	emit_signal("actor_ready")
 
+
+func pause(enable : bool = true):
+	if enable and not FSM.is_paused():
+		FSM.pause()
+	elif not enable and FSM.is_paused():
+		FSM.resume()
+
+func is_paused():
+	return FSM.is_paused()
 
 func get_mover():
 	return mover
@@ -86,9 +97,10 @@ func revive():
 	health.revive()
 	mover.enable(true)
 	next_attack()
+	print("Revived with Attack ID: ", cur_attack)
 
 func hurt(amount : float, d : Vector3 = Vector3.ZERO, force : float = 0.0):
-	print("PLAYER: OUCH!")
+	print("Player Health: ", health.get_health())
 	health.hurt(amount, d)
 	if d.length_squared() > 0 and force > 0:
 		mover.push(d * force)

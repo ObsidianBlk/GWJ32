@@ -34,14 +34,12 @@ func handle_update(delta):
 	#	return
 	
 	var dist = actor.global_transform.origin.distance_to(player.global_transform.origin)
-	print("Distance to Player: ", dist)
 	if not _can_attack():
 		actor.face_position(delta, player.global_transform.origin)
 		if mover:
 			mover.set_motion(-Vector3.FORWARD)
 			mover.apply_velocity(delta)
 	else:
-		print("Chase -> Attack")
 		emit_signal("finished", "attack")
 
 

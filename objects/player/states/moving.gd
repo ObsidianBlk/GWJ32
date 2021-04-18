@@ -10,14 +10,8 @@ func enter():
 	audio.play()
 	anim.play("idle")
 
-func resume():
-	paused = false
-
 func exit():
 	.exit()
-
-func pause():
-	paused = true
 
 func handle_input(event):
 	.handle_input(event)

@@ -2082,6 +2082,7 @@ run_accel = 1.0
 max_walk_velocity = 4.0
 walk_accel = 0.5
 drag_multiplier = 3.1
+ground_sensor_path = NodePath("../GroundSensor")
 
 [node name="HealthCtrl" parent="." instance=ExtResource( 5 )]
 max_normal_health = 30.0
@@ -2337,5 +2338,8 @@ anims/Walk = SubResource( 12 )
 [node name="CollisionShape" type="CollisionShape" parent="SensorArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 14 )
+
+[node name="GroundSensor" type="RayCast" parent="."]
+cast_to = Vector3( 0, -0.1, 0 )
 [connection signal="body_entered" from="Attack_Slash/SlashArea" to="Attack_Slash" method="_on_SlashArea_body_entered"]
 [connection signal="body_exited" from="Attack_Slash/SlashArea" to="Attack_Slash" method="_on_SlashArea_body_exited"]

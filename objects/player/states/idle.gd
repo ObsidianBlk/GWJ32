@@ -5,19 +5,12 @@ onready var audio = get_node("../../Stream_steps")
 
 func enter():
 	.enter()
-	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	print("Entered Idle")
 	audio.stop()
 	anim.play("idle")
 
-func resume():
-	paused = false
-
 func exit():
 	.exit()
-
-func pause():
-	paused = true
 
 func handle_input(event):
 	.handle_input(event)

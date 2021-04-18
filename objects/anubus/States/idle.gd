@@ -72,6 +72,7 @@ func resume():
 func handle_update(delta):
 	if _can_see_player():
 		emit_signal("finished", "chase")
+	mover.apply_velocity(delta)
 
 
 func _on_idle_timeout():

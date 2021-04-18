@@ -18,6 +18,9 @@ func _ready():
 	att_rate_timer.connect("timeout", self, "_on_attack_ready")
 	emit_signal("attack_ready")
 
+func init():
+	pass
+
 func attack():
 	if attack_ready:
 		attack_ready = false
@@ -29,7 +32,6 @@ func attack():
 
 func reset():
 	if att_rate_timer.is_stopped():
-		print("Resetting attack")
 		attack_ready = true
 
 func is_one_off():

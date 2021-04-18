@@ -7,7 +7,6 @@ var attack_node = null
 
 func enter():
 	.enter()
-	print("I'm attacking now")
 	player.connect("attack_changed", self, "_on_attack_changed")
 	cur_attack = player.get_attack_id()
 	_on_attack_changed(cur_attack)
@@ -17,6 +16,8 @@ func enter():
 func exit():
 	.exit()
 	player.disconnect("attack_changed", self, "_on_attack_changed")
+	cur_attack = 0
+	attack_node = null
 
 
 func handle_physics(delta):
@@ -42,6 +43,7 @@ func handle_physics(delta):
 
 
 func _on_attack_changed(id : int):
+	print("Attack ID: ", id)
 	if id >= attack_list.size():
 		print("WARNING: Attack ID, ", id, ", is out of bounds")
 		return
@@ -59,9 +61,14 @@ func _on_attack_changed(id : int):
 	cur_attack = id
 	if attack_node.is_one_off():
 		attack_node.connect("attack_done", self, "_on_attack_done")
+	attack_node.init()
 
 
 func _on_attack_done():
+	if attack_node == null:
+		emit_signal("finished", "idle")
+		return
+	
 	player.attacking(false)
 	attack_node.reset()
 	var mover = player.get_mover()

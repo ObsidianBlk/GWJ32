@@ -1,17 +1,8 @@
 extends "res://objects/player/PlayerState.gd"
 
-
 func enter():
-	pass
-
-func resume():
-	paused = false
-
-func exit():
-	pass
-
-func pause():
-	paused = true
+	.enter()
+	anim.stop()
 
 func handle_input(event):
 	if event.is_action_pressed("ui_cancel"):

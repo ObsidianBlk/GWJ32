@@ -5,3 +5,7 @@ Author: Oliksiy Yakovlyev
 
 
 
+environment_002.hdr
+Source: https://hdrihaven.com/hdri/?c=indoor&h=fireplace
+Original Title: Fireplace
+Author: Greg Zaal

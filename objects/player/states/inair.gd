@@ -8,17 +8,12 @@ func enter():
 	.enter()
 	anim.play("Idle")
 	audio_steps.stop()
-	if player.get_mover().is_lifting():
+	if player.get_mover().is_lifting(10):
 		audio_jump.play()
-
-func resume():
-	paused = false
 
 func exit():
 	.exit()
 
-func pause():
-	paused = true
 
 func handle_input(event):
 	.handle_input(event)
