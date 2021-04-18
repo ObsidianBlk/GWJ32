@@ -6,7 +6,7 @@ onready var audio_steps = get_node("../../Stream_steps")
 
 func enter():
 	.enter()
-	anim.play("Idle")
+	anim.play("idle")
 	audio_steps.stop()
 	if player.get_mover().is_lifting(10):
 		audio_jump.play()

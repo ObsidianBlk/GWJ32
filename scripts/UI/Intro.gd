@@ -42,7 +42,6 @@ func _on_text_faded():
 
 func _on_intro_completed():
 	tween.disconnect("tween_all_completed", self, "_on_intro_completed")
-	print ("Ending the intro")
 	ignoreInput = true
 	visible = false
 	set_process_input(false)

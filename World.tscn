@@ -4,42 +4,42 @@
 [ext_resource path="res://objects/player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/UI/Intro.gd" type="Script" id=3]
 [ext_resource path="res://assets/audio/intro/intro.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/audio/music/ancient_robot.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/music/Temple of the Mystics.ogg" type="AudioStream" id=5]
 [ext_resource path="res://scripts/World.gd" type="Script" id=6]
 [ext_resource path="res://scripts/UI/TitleScreen.gd" type="Script" id=7]
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="DynamicFontData" id=8]
+[sub_resource type="DynamicFontData" id=2]
 font_path = "res://assets/fonts/Ceria Lebaran.otf"
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=3]
 size = 204
 outline_size = 4
 use_mipmaps = true
 use_filter = true
-font_data = SubResource( 8 )
+font_data = SubResource( 2 )
 
-[sub_resource type="DynamicFontData" id=10]
+[sub_resource type="DynamicFontData" id=4]
 font_path = "res://assets/fonts/Laviossa-Medium.otf"
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=5]
 size = 32
-font_data = SubResource( 10 )
+font_data = SubResource( 4 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="DynamicFontData" id=5]
+[sub_resource type="DynamicFontData" id=7]
 font_path = "res://assets/fonts/Ceria Lebaran.otf"
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=8]
 size = 72
 outline_size = 2
 use_mipmaps = true
 use_filter = true
-font_data = SubResource( 5 )
+font_data = SubResource( 7 )
 
 [node name="World" type="Spatial"]
 pause_mode = 2
@@ -51,12 +51,13 @@ pause_mode = 1
 [node name="Player" parent="Game" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.79805, -1.51952, 11.3119 )
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="Game"]
+[node name="Level_001" parent="Game" instance=ExtResource( 1 )]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -21.204
+autoplay = true
 bus = "Music"
-
-[node name="Level_001" parent="Game" instance=ExtResource( 1 )]
 
 [node name="UI" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -64,7 +65,7 @@ pause_mode = 2
 [node name="TitleScreen" type="PanelContainer" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -78,7 +79,7 @@ margin_bottom = 1080.0
 margin_right = 1920.0
 margin_bottom = 538.0
 size_flags_vertical = 7
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 1, 0.807843, 0.529412, 1 )
 custom_colors/font_outline_modulate = Color( 0.435294, 0.588235, 0.945098, 1 )
 text = "Isisian Seven"
@@ -91,7 +92,7 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 0.584314, 0.584314, 1 )
 text = "Press Any Key To Start"
 align = 1
@@ -99,7 +100,7 @@ align = 1
 [node name="Intro" type="PanelContainer" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 6 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -124,7 +125,7 @@ margin_left = 274.0
 margin_top = 240.0
 margin_right = 1645.0
 margin_bottom = 839.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 1, 0.996078, 0.831373, 1 )
 custom_colors/font_outline_modulate = Color( 0.313726, 0.333333, 0.494118, 1 )
 text = "Arrise my seven
